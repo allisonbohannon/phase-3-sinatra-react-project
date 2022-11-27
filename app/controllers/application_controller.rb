@@ -3,13 +3,13 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/books" do
-    books = Book.all
-    books.to_json
+    books = Book.all.order(:title)
+    books.to_json(include: [:author, :genre])
   end
 
   post "/books" do 
     author = Author.find_or_create_by(
-      first_name: params[:first_name]
+      first_name: params[:first_name],
       last_name: params[:last_name]
     )
 
@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
     )
 
     book = Book.find_or_create_by(
-      title: params[:title]
+      title: params[:title],
       author_id: author.id, 
       genre_id: genre.id
     )
