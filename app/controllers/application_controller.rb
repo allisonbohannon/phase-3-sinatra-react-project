@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
   # Add your routes here
   get "/books" do
     books = Book.all.order(:title)
-    books.to_json(include: [:author, :genre])
+    books.to_json(only: [:id, :title, :read_status], include: [:author, :genre])
   end
 
   post "/books" do 
