@@ -20,20 +20,24 @@ class ApplicationController < Sinatra::Base
     book = Book.find_or_create_by(
       title: params[:title],
       author_id: author.id, 
-      genre_id: genre.id
+      genre_id: genre.id,
+      read_status: 0
     )
-    book.to_json
+    book.to_json(only: [:id, :title, :read_status], include: [:author, :genre])
   end
 
   patch '/books/:id' do 
     book = Book.find(params[:id])
-    book.to_json
+    book.update(
+      read_status: 1
+    )
+    book.to_json(only: [:id, :title, :read_status], include: [:author, :genre])
   end
 
   delete '/books/:id' do
     book = Book.find(params[:id])
     book.destroy
-    book.to_json
+    book.to_json(only: [:id, :title, :read_status], include: [:author, :genre])
   end
 
 end
