@@ -21,8 +21,8 @@ end
     Book.create(
         title: Faker::Book.title,
         read_status: 0, 
-        author_id: rand(1..10),
-        genre_id: rand(1..10)
+        author_id: rand(1..3),
+        genre_id: rand(1..3)
     )
 end
 
