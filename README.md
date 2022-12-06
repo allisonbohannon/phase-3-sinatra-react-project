@@ -12,12 +12,20 @@ On the backend, there are three separate database tables for Authors, Books, and
 ## Running the project locally
 This project will need to be run in tandem with a frontend interface  found in https://github.com/allisonbohannon/Flatiron_phase_3_project_frontend
 
+You will need to run the following tasks in your terminal to run the program: 
+
+
+bundle install 
+
+bundle exec db:migrate 
+
+**Optional: bundle exec db:seed
+
 bundle exec rake server 
 
 ## Technologies Used
 Ruby
 Sinatra
-
 ##
 
 
